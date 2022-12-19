@@ -3,7 +3,10 @@
 class Rule {
   constructor(output, condition) {
     if (typeof output !== 'string') {
-      console.error('parameter "output" type should be a string')
+      throw new Error('Argument "output" must be a type of string');
+    }
+    if (typeof condition !== 'function') {
+      throw new Error('Argument "condition" must be a type of function');
     }
     this.output = output;
     this.condition = condition;
@@ -21,6 +24,9 @@ class FizzBuzzEngine {
   rules = [];
 
   AddRule(rule) {
+    if (!(rule instanceof Rule)) {
+      throw new Error('Argument "rule" must be a type of Rule');
+    }
     this.rules.push(rule);
   }
 
