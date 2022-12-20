@@ -10,7 +10,7 @@ namespace FizzBuzz
         /// <summary>
         /// Rule object to store the condition of the output.
         /// </summary>
-        /// <param name="output">String to output when the conition is met.</param>
+        /// <param name="output">String to output when the condition is met.</param>
         /// <param name="condition">Function to define the conditions. It will return the output string if the result is true.</param>
         public Rule(string output, Func<int, bool> condition)
         {
