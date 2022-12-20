@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 /**
  *
@@ -19,56 +18,6 @@ using System.Collections.Generic;
 
 namespace FizzBuzz
 {
-    public class Rule
-    {
-        private string output;
-        private Func<int, bool> condition;
-
-        public Rule(string output, Func<int, bool> condition)
-        {
-            this.output = output;
-            this.condition = condition;
-        }
-
-        public string Evaluate(int operand)
-        {
-            if (this.condition(operand))
-            {
-                return this.output;
-            }
-            return null;
-        }
-    }
-
-    public class FizzBuzzEngine
-    {
-        private List<Rule> rules = new List<Rule>();
-
-        public void AddRule(Rule rule)
-        {
-            rules.Add(rule);
-        }
-
-        public void Run(int limit = 100)
-        {
-            for (int i = 1; i <= limit; i++)
-            {
-                string output = "";
-
-                foreach (var rule in rules)
-                {
-                    output += rule.Evaluate(i);
-                }
-                if (string.IsNullOrEmpty(output))
-                {
-                    output = i.ToString();
-                }
-
-                Console.WriteLine($"{i}: {output}");
-            }
-        }
-    }
-
     public class Program
     {
         public static void Main(string[] args)
@@ -78,10 +27,11 @@ namespace FizzBuzz
             engine.AddRule(new Rule("Fizz", (n) => { return n % 3 == 0; }));
             engine.AddRule(new Rule("Buzz", (n) => { return n % 5 == 0; }));
 
+            // Example extensions
             engine.AddRule(new Rule("Bar", (n) => { return n % 7 == 0; }));
             engine.AddRule(new Rule("Foo", (n) => { return n * 10 > 100; }));
 
-            engine.Run(100);
+            engine.Run();
             Console.ReadKey();
         }
     }
